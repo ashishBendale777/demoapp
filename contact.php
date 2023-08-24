@@ -70,7 +70,7 @@
             <div>
                 <img src="contact.jpg" alt="ContactImg" class="Contact-img">
             </div>
-            
+
             <div>
                 <form method="post">
 
@@ -78,7 +78,7 @@
                         <label>Full Name :</label><br>
                         <input type="text" size="48" name="fullname" placeholder="Enter Your Name">
                     </div>
-                    
+
                     <div class="form-div">
                         <label>Email :</label><br>
                         <input type="email" size="48" name="email" placeholder="Enter Your Email">
@@ -111,10 +111,9 @@
 
                     <div class="form-div">
                         <label>Massage :</label>
-
                         <textarea name="message" placeholder="Write something.." style="height:50px; width: 340px;"></textarea>
                     </div>
-                    
+
                     <div class="button-div">
                         <button type="submit" name="add">Submit</button>
                     </div>
@@ -128,6 +127,7 @@
     <div>
         <h1>DATA</h1>
         <?php
+        include 'dbconnect.php';
         if (isset($_POST['add'])) {
             $fullname = $_POST['fullname'];
             $emailid = $_POST['email'];
@@ -136,12 +136,13 @@
             $country = $_POST['country'];
             $message = $_POST['message'];
 
-            echo $fullname . "<br>";
-            echo $mobileno . "<br>";
-            echo $emailid . "<br>";
-            echo $gender . "<br>";
-            echo $country . "<br>";
-            echo $message . "<br>";
+            $sql = "INSERT INTO `ContactData` (`Full_Name`, `Email`, `Mobile`, `Gender`, `Country`,`Massage`) VALUES
+            ('$fullname', '$emailid', '$mobileno', '$gender', '$country','$message')";
+            if ($conn->query($sql) === false) { // Jika gagal meng-insert data tampilkan pesan dibawah 'Perintah SQL Salah'
+                trigger_error('Wrong SQL Command: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);
+            } else { // Jika berhasil alihkan ke halaman tampil.php
+                echo "<script>alert('Add Success!')</script>";
+            }
         }
         ?>
 
