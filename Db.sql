@@ -1,5 +1,5 @@
 CREATE TABLE `ContactData` (
-    `ID` INT PRIMARY KEY AUTO_INCREMENT,
+  `ID` INT PRIMARY KEY AUTO_INCREMENT,
   `Full_Name` varchar(10) NOT NULL,
   `Email` varchar(50),
   `Mobile` varchar(10),
@@ -12,4 +12,5 @@ INSERT INTO `ContactData` (`Full_Name`, `Email`, `Mobile`, `Gender`, `Country`,`
 ('abhay', 'abhay@gmail.com', '1234567', 'Male', 'India',"hii IMR")
 
 DROP TABLE ContactData;
+
 TRUNCATE TABLE ContactData;

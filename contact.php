@@ -137,9 +137,9 @@
 
             $sql = "INSERT INTO `ContactData` (`Full_Name`, `Email`, `Mobile`, `Gender`, `Country`,`Massage`) VALUES
             ('$fullname', '$emailid', '$mobileno', '$gender', '$country','$message')";
-            if ($conn->query($sql) === false) { // Jika gagal meng-insert data tampilkan pesan dibawah 'Perintah SQL Salah'
+            if ($conn->query($sql) === false) { 
                 trigger_error('Wrong SQL Command: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);
-            } else { // Jika berhasil alihkan ke halaman tampil.php
+            } else { 
                 echo "<script>alert('Add Success!')</script>";
             }
         }

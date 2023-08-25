@@ -48,9 +48,9 @@
     if (isset($_GET['con_id'])) {
         $con_id = $_GET['con_id'];
         $sql = "DELETE FROM contactdata WHERE ID='$con_id'";
-        if ($conn->query($sql) === false) { // Jika gagal meng-insert data tampilkan pesan dibawah 'Perintah SQL Salah'
+        if ($conn->query($sql) === false) { 
             trigger_error('Wrong SQL Command: ' . $sql . ' Error: ' . $conn->error, E_USER_ERROR);
-        } else { // Jika berhasil alihkan ke halaman tampil.php
+        } else { 
             echo "<script>alert('Delete Success!')</script>";
         }
     }
