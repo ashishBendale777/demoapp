@@ -125,7 +125,6 @@
     </div>
 
     <div>
-        <h1>DATA</h1>
         <?php
         include 'dbconnect.php';
         if (isset($_POST['add'])) {
