@@ -1,15 +1,23 @@
 import { Button, Typography } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 
 const Home = () => {
+  let [conter, setCounter] = useState(0)
+
+  let names = ["AShish","Sam","Sarvesh"]
+
   return (
-    <div>
-        <h4>Home</h4>
-        <Typography variant='h4'>Hi From Home</Typography>
-        <Button variant='contained' color='warning'>Submit</Button>
-        <Button variant='outlined' color='success'>Submit</Button>
-        <Button variant='text' color='success'>Submit</Button>
-    </div>
+    <>
+      <Typography variant='h4'>Use State Hook</Typography>
+      <Button onClick={() => {
+        setCounter(--conter)
+      }} variant='contained' color='error'>-</Button>
+      <Typography variant='h4'>{conter}</Typography>
+      <Typography variant='h4'>{names[conter]}</Typography>
+      <Button onClick={() => {
+        setCounter(++conter)
+      }} variant='contained' color='success'>+</Button>
+    </>
   )
 }
 
