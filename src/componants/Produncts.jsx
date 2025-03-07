@@ -27,22 +27,20 @@ const Produncts = () => {
                     {
                         allProducts.map((prod) => {
                             return (
-                                <Grid2 sx={{
+                                <Grid2 size={{
                                     sm: 12,
                                     md: 6,
-                                    lg: 3
+                                    lg: 4
                                 }} item key={prod.id}>
                                     <Card>
                                         <CardMedia
                                             sx={{
-                                                width: "100%",
-                                                height: "200px"
+                                                height: 190
                                             }}
-                                            component={"img"}
-                                            src={prod.thumbnail}
+                                            image={prod.thumbnail}
                                         />
                                         <CardContent>
-                                            <Typography variant='h4'>{prod.title}</Typography>
+                                            <Typography variant='h5'>{prod.title}</Typography>
                                             <Typography variant='h5'>{prod.category}</Typography>
                                             <Typography variant='h5'>{prod.price}</Typography>
                                         </CardContent>
