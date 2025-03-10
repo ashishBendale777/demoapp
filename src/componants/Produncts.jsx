@@ -1,10 +1,14 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid2, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid2, Typography } from '@mui/material'
 import axios, { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
+
+
 const Produncts = () => {
+    const [isOpen, setisOpen] = useState(false)
+    const [selectedProduct, setselectedProduct] = useState(null)
     const [allProducts, setallProducts] = useState([])
     let navigate = useNavigate()
 
@@ -20,6 +24,12 @@ const Produncts = () => {
         fetchProducts()
     }, [])
 
+    let handleOpenDialog = () => {
+        setisOpen(true)
+    }
+    let handleCloseDialog = () => {
+        setisOpen(false)
+    }
 
     return (
         <>
@@ -47,7 +57,11 @@ const Produncts = () => {
                                         </CardContent>
                                         <CardActions>
                                             <Button variant='outlined' color='success'>Add To Cart</Button>
-                                            <Button variant='outlined' onClick={() => navigate('/proddetails', { state: prod })} color='success'>Details</Button>
+                                            <Button variant='outlined' onClick={() => {
+                                                // navigate('/proddetails', { state: prod })
+                                                setselectedProduct(prod)
+                                                handleOpenDialog()
+                                            }} color='success'>Details</Button>
                                         </CardActions>
                                     </Card>
                                 </Grid2>
@@ -58,6 +72,21 @@ const Produncts = () => {
                     }
                 </Grid2>
             </Box>
+            <Dialog open={isOpen}
+                onClose={handleCloseDialog}>
+                <DialogTitle>Product Details</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        <Typography variant='h6'>{selectedProduct?.title}</Typography>
+                        {selectedProduct?.price}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => handleCloseDialog()} variant='text' color='error'>
+                        Close
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     )
 }
