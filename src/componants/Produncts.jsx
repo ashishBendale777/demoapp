@@ -2,6 +2,7 @@ import { Box, Button, Card, CardActions, CardContent, CardMedia, Dialog, DialogA
 import axios, { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import MyCard from '../customcoontrols/MyCard'
 
 
 
@@ -38,33 +39,7 @@ const Produncts = () => {
                     {
                         allProducts.map((prod) => {
                             return (
-                                <Grid2 size={{
-                                    sm: 12,
-                                    md: 6,
-                                    lg: 4
-                                }} item key={prod.id}>
-                                    <Card>
-                                        <CardMedia
-                                            sx={{
-                                                height: 190
-                                            }}
-                                            image={prod.thumbnail}
-                                        />
-                                        <CardContent>
-                                            <Typography variant='h5'>{prod.title}</Typography>
-                                            <Typography variant='h5'>{prod.category}</Typography>
-                                            <Typography variant='h5'>{prod.price}</Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <Button variant='outlined' color='success'>Add To Cart</Button>
-                                            <Button variant='outlined' onClick={() => {
-                                                // navigate('/proddetails', { state: prod })
-                                                setselectedProduct(prod)
-                                                handleOpenDialog()
-                                            }} color='success'>Details</Button>
-                                        </CardActions>
-                                    </Card>
-                                </Grid2>
+                                <MyCard data={prod} />
                             )
                         }
 
