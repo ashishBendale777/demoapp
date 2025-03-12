@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid2, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Chip, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid2, Stack, Typography } from '@mui/material'
 import axios, { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -6,24 +6,45 @@ import MyCard from '../customcoontrols/MyCard'
 
 
 
-
 const Produncts = () => {
+
     const [isOpen, setisOpen] = useState(false)
     const [selectedProduct, setselectedProduct] = useState(null)
     const [allProducts, setallProducts] = useState([])
     let navigate = useNavigate()
+
+
+    const [selectedCategoty, setselectedCategoty] = useState("All")
+    const [filterData, setfilterData] = useState([])
 
     useEffect(() => {
         //define function
         let fetchProducts = async () => {
             let result = await axios.get("https://dummyjson.com/products")
             console.log("DATR", result.data.products);
+            // setfilterData(result.data.products)
             setallProducts(result.data.products)
         }
 
         //call functions
         fetchProducts()
     }, [])
+
+
+    //use effect for filtered products
+    useEffect(() => {
+        
+        let filterProducts = allProducts.filter((prd) => prd.category == selectedCategoty)
+        setfilterData(filterProducts)
+        console.log("FILTER", filterProducts);
+
+        if (selectedCategoty == "All") {
+            setfilterData(allProducts)
+        }z
+    }, [selectedCategoty, allProducts])
+
+
+
 
     let handleOpenDialog = () => {
         setisOpen(true)
@@ -34,10 +55,19 @@ const Produncts = () => {
 
     return (
         <>
+            <Stack direction="row" spacing={2} sx={{
+                margin: 1
+            }}>
+                <Chip label="All" onClick={() => setselectedCategoty("All")} variant='filled' color='primary' />
+                <Chip label="Beauty" onClick={() => setselectedCategoty("beauty")} variant='filled' color='primary' />
+                <Chip label="Fragrances" onClick={() => setselectedCategoty("fragrances")} variant='filled' color='primary' />
+                <Chip label="Funniure" onClick={() => setselectedCategoty("furniture")} variant='filled' color='primary' />
+                <Chip label="Grossaty" onClick={() => setselectedCategoty("groceries")} variant='filled' color='primary' />
+            </Stack>
             <Box>
                 <Grid2 container spacing={3} padding={2}>
                     {
-                        allProducts.map((prod) => {
+                        filterData.map((prod) => {
                             return (
                                 <MyCard data={prod} />
                             )
