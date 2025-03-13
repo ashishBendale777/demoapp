@@ -7,6 +7,7 @@ import MyAppBar from './MyAppBar'
 import Register from './Register'
 import Produncts from './Produncts'
 import ProductDetails from './ProductDetails'
+import Orders from './Orders'
 
 const MyRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const MyRoutes = () => {
                 <Route path='/products' element={<Produncts/>}/>
                 <Route path='/register' element={<Register/>}/>
                 <Route path='/proddetails' element={<ProductDetails/>}/>
+                <Route path='/orders' element={<Orders/>}/>
             </Routes>
         </>
     )

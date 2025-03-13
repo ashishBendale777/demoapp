@@ -3,8 +3,10 @@ import axios, { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MyCard from '../customcoontrols/MyCard'
+import MyTabs from './MyTabs'
 
 
+//React Chips with useEffect and data filteration
 
 const Produncts = () => {
 
@@ -33,14 +35,14 @@ const Produncts = () => {
 
     //use effect for filtered products
     useEffect(() => {
-        
+
         let filterProducts = allProducts.filter((prd) => prd.category == selectedCategoty)
         setfilterData(filterProducts)
         console.log("FILTER", filterProducts);
 
         if (selectedCategoty == "All") {
             setfilterData(allProducts)
-        }z
+        } z
     }, [selectedCategoty, allProducts])
 
 
