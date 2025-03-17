@@ -3,7 +3,6 @@ import axios, { all } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import MyCard from '../customcoontrols/MyCard'
-import MyTabs from './MyTabs'
 
 
 //React Chips with useEffect and data filteration
@@ -24,7 +23,7 @@ const Produncts = () => {
         let fetchProducts = async () => {
             let result = await axios.get("https://dummyjson.com/products")
             console.log("DATR", result.data.products);
-            // setfilterData(result.data.products)
+            setfilterData(result.data.products)
             setallProducts(result.data.products)
         }
 
@@ -42,7 +41,7 @@ const Produncts = () => {
 
         if (selectedCategoty == "All") {
             setfilterData(allProducts)
-        } z
+        }
     }, [selectedCategoty, allProducts])
 
 

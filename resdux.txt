@@ -1,0 +1,15 @@
+React Redux
+
+1 MainStore -- storage for data
+2 reducers -- contains actions
+3 actions -- action is function which is use for performing operation on the storage   
+    operations liike (adding updating or removing data)
+
+4 redux hooks -- useDispath(), useSelector()
+    useDispath() -- use for execute the actions or call the actuins 
+    useSelector() -- use for fetching storage data
+
+5 files needed -- Slice file contains reducers with defined actions
+    MainStore file -- use adding reducers to sorage
+
+6 libraries -- @reduxjs/toolkit react-redux    
