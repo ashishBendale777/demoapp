@@ -5,12 +5,14 @@ import "./App.css"
 import MyAppBar from './componants/MyAppBar'
 import MyRoutes from './componants/MyRoutes'
 import AdminRoutes from './admin/AdminRoutes'
+import NestedRoutes from './NestedRoutes'
 
 const App = () => {
   return (
     <>
       {/* <MyRoutes/> */}
       <AdminRoutes/>
+      {/* <NestedRoutes /> */}
     </>
   )
 }
