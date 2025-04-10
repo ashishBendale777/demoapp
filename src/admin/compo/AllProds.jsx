@@ -1,11 +1,23 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Grid2, Typography } from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogTitle, Grid2, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import MyCard from '../../customcoontrols/MyCard'
+import { SensorOccupied } from '@mui/icons-material'
 
 const AllProds = () => {
   const [products, setproducts] = useState([])
-  const [selectedProd, setselectedProd] = useState(null)
+  const [selectedProd, setselectedProd] = useState({})
+  const [openDialog, setopenDialog] = useState(false)
+  const [newPric, setnewPrice] = useState(0)
+
+  let openUpdateDialog = (prod) => {
+    setopenDialog(true)
+    setselectedProd(prod)
+  }
+  let closenUpdateDialog = () => {
+    setopenDialog(false)
+    setselectedProd(null)
+  }
 
   useEffect(() => {
     async function fetchProducts() {
@@ -22,6 +34,20 @@ const AllProds = () => {
         data: { prodId: pId }
       })
       console.log(result.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  let updateProdPrice = async () => {
+    try {
+      let result = await axios.put("http://localhost:5000/api/updateproduct",
+        {
+          price: newPric,
+          prodId: selectedProd._id
+        })
+      console.log(result.data);
+      closenUpdateDialog()
     } catch (error) {
       console.log(error);
     }
@@ -58,8 +84,11 @@ const AllProds = () => {
                       // setselectedProd(prod)
                       deleteProductRequest(prod._id)
                     }} variant='contained' color='error'>Delete</Button>
-                    <Button variant='contained' onClick={() => {
-                    }} color='primary'>Update</Button>
+                    <Button
+                      variant='contained'
+                      onClick={() => {
+                        openUpdateDialog(prod)
+                      }} color='primary'>Update</Button>
                   </CardActions>
                 </Card>
               </Grid2>
@@ -69,7 +98,19 @@ const AllProds = () => {
           )
         }
       </Grid2>
-
+      <Dialog open={openDialog} onClose={closenUpdateDialog}>
+        <DialogTitle>
+          Update Price
+        </DialogTitle>
+        <DialogContent>
+          <TextField onChange={(e) => setnewPrice(e.target.value)} label="Enter Updated Price"
+            name='price' />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => updateProdPrice()} variant='contained' color='primary'>Submit</Button>
+          <Button onClick={() => closenUpdateDialog()} variant='contained' color='error'>Close</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   )
 }
