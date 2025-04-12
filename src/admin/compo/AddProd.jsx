@@ -1,9 +1,10 @@
 import { Box, Button, Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TextField } from '@mui/material'
 import axios from 'axios';
-import React from 'react'
+import React, { useState } from 'react'
 
 const AddProd = () => {
 
+  const [selectedImage, setselectedImage] = useState(null)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,7 +12,12 @@ const AddProd = () => {
     let reqData = Object.fromEntries(formData.entries())
     console.log("REQ", reqData);
 
-    let result = await axios.post("http://localhost:5000/api/createproduct", reqData)
+
+    let result = await axios.post("http://localhost:5000/api/createproduct", 
+      { ...reqData, prodimage: selectedImage },
+      {headers:{
+        "Content-Type":"multipart/form-data"
+      }})
     console.log(result.data);
     alert(result.data.message)
   };
@@ -55,6 +61,13 @@ const AddProd = () => {
           label="Discount Percentage"
           name="discountPercentage"
           type="number"
+        />
+
+        <TextField
+          label="Select Image"
+          name="prodimage"
+          type="file"
+          onChange={(e) => setselectedImage(e.target.files[0])}
         />
 
         <Button variant="contained" type="submit">
