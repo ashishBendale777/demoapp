@@ -22,7 +22,7 @@ const MyCard = ({ data }) => {
                         sx={{
                             height: 190
                         }}
-                        image={data.thumbnail}
+                        image={`http://localhost:5000/${data.prodimage?.replace("\\", "/")}`}
                     />
                     <CardContent>
                         <Typography variant='h5'>{data.title}</Typography>

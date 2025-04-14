@@ -10,8 +10,8 @@ import NestedRoutes from './NestedRoutes'
 const App = () => {
   return (
     <>
-      {/* <MyRoutes/> */}
-      <AdminRoutes/>
+      <MyRoutes/>
+      {/* <AdminRoutes/> */}
       {/* <NestedRoutes /> */}
     </>
   )

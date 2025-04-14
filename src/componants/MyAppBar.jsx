@@ -55,6 +55,10 @@ const MyAppBar = () => {
                             <ListItem onClick={() => navigate("/orders")}>
                                 <ListItemText>Orders</ListItemText>
                             </ListItem>
+
+                            <ListItem onClick={() => navigate("/cart")}>
+                                <ListItemText>Cart</ListItemText>
+                            </ListItem>
                         </List>
                     </Box>
 

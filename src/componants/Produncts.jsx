@@ -7,7 +7,7 @@ import MyCard from '../customcoontrols/MyCard'
 
 //React Chips with useEffect and data filteration
 
-const Produncts = () => {
+const  Produncts = () => {
 
     const [isOpen, setisOpen] = useState(false)
     const [selectedProduct, setselectedProduct] = useState(null)
@@ -21,10 +21,10 @@ const Produncts = () => {
     useEffect(() => {
         //define function
         let fetchProducts = async () => {
-            let result = await axios.get("https://dummyjson.com/products")
-            console.log("DATR", result.data.products);
-            setfilterData(result.data.products)
-            setallProducts(result.data.products)
+            let result = await axios.get("http://localhost:5000/api/fetchproducts")
+            console.log("DATR", result.data);
+            setfilterData(result.data)
+            setallProducts(result.data)
         }
 
         //call functions

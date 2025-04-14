@@ -16,7 +16,7 @@ const AddProd = () => {
     let result = await axios.post("http://localhost:5000/api/createproduct", 
       { ...reqData, prodimage: selectedImage },
       {headers:{
-        "Content-Type":"multipart/form-data"
+        "Content-Type":"multipart/form-data  "
       }})
     console.log(result.data);
     alert(result.data.message)
