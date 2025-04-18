@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { calculateTotal, clearCart, decrementQty, incrementQty, removeItem } from '../reduxwork/CartSlice'
 import axios from 'axios'
 
-
+//product image display and post order from react
 const Caart = () => {
 
 

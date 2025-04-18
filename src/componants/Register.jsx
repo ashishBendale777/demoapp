@@ -7,9 +7,11 @@ import {
 } from '@mui/material'
 import { red } from '@mui/material/colors'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
 
+    let navigator = useNavigate()
     let submitFormData = (event) => {
         event.preventDefault()
         let formEntries = new FormData(event.target)
@@ -17,6 +19,7 @@ const Register = () => {
         console.log("DATA", formDataObject);
     }
 
+    //react forms submittion
     return (
         <>
             <Typography variant='h4'>Register User</Typography>
@@ -56,6 +59,9 @@ const Register = () => {
                     <Button type='submit' variant='contained' color='success'>
                         Reginster
                     </Button>
+                    <Typography onClick={()=>navigator("/login")} sx={{
+                        cursor: "pointer"
+                    }} variant='inherit'>Already Registered? Login</Typography>
                 </Box>
             </Box>
         </>
