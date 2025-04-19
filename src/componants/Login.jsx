@@ -1,8 +1,13 @@
 import { Box, Button, TextField, Typography } from '@mui/material'
 import axios from 'axios'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from '../reduxwork/UserSlice'
+
 
 const Login = () => {
+
+    let dispatcher = useDispatch()
 
     let doLoginReq = async (event) => {
         event.preventDefault()
@@ -13,6 +18,7 @@ const Login = () => {
         try {
             let loginResult = await axios.post("http://localhost:5000/api/login", loginUserData)
             console.log("RES", loginResult);
+            dispatcher(login(loginResult.data.data))
         } catch (error) {
             console.log(error.response.data.message);
         }

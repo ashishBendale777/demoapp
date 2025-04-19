@@ -1,4 +1,4 @@
-import { Box, Button } from '@mui/material';
+import { Box, Button, FormControl, InputLabel } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import React, { useState } from 'react'
@@ -57,21 +57,7 @@ const Orders = () => {
                     // renderInput={(params) => <TextField {...params} />}
                     />
                 </LocalizationProvider>
-                <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={age}
-                        label="Age"
-                        onChange={handleChange}
-                    >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
-                    </Select>
-                </FormControl>
-                <Button variant='contained' color='success' >Find</Button>
+                                <Button variant='contained' color='success' >Find</Button>
             </Box>
             <Box>
 
